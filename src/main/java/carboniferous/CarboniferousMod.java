@@ -84,7 +84,7 @@ public class CarboniferousMod {
 		//Initialize the Entitys
 		ModEntities.init();
 		
-		RecipeHandler.inti();
+		RecipeHandler.init();
 		
 		FMLCommonHandler.instance().bus().register(new ServerTickHandler());
 		
