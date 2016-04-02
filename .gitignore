@@ -3,7 +3,6 @@
 #################
 
 .gradle/
-gradle/
 eclipse/
 build/
 bin/
@@ -14,8 +13,6 @@ saves/
 crash-reports/
 config/
 .settings/
-gradlew
-gradlew.bat
 options.txt
 
 *.pydevproject
