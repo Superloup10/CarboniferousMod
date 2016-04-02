@@ -22,8 +22,8 @@ group= "com.percivalalb.carboniferousmod" // http://maven.apache.org/guides/mini
 archivesBaseName = "Carboniferous Mod"
 
 minecraft {
-    version = "1.7.2-10.12.1.1063"
-    assetDir = "eclipse/assets"
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "eclipse"
 }
 processResources
 {
