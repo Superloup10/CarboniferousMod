@@ -1,9 +1,9 @@
 package carboniferous;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -28,18 +28,20 @@ public class RecipeHandler
         OreDictionary.registerOre("stairWood", ModBlocks.stairsCordaites);
         OreDictionary.registerOre("stairWood", ModBlocks.stairsSigillaria);
         
-        for(int var1 = 0; var1 < 4; ++var1)
+        for(int i = 0; i < 4; i++)
         {
-            CraftingHelper.addShapelessRecipe(new ItemStack(ModBlocks.planks_1, 4, var1), new Object[] {new ItemStack(ModBlocks.logs_1, 4, var1)});
-            CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.woodSingleSlab, 6, var1), new Object[] {"BBB", 'B', new ItemStack(ModBlocks.planks_1, 1, var1)});
-            FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.logs_1, 1, var1), new ItemStack(Items.coal, 1, 1), 0.15F);
+            GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.planks_1, 4, i), new Object[] {new ItemStack(ModBlocks.logs_1, 4, i)});
+            GameRegistry.addSmelting(new ItemStack(ModBlocks.logs_1, 1, i), new ItemStack(Items.coal, 1, 1), 0.15F);
         }
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.multiBlock1, 1, 1), new ItemStack(ModBlocks.multiBlock1, 1, 0), 0.1F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.multiItems, 1, 2), new ItemStack(Items.iron_ingot, 1, 0), 0.35F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.rawDragonfly, 1, 0), new ItemStack(ModItems.cookedDragonfly, 1, 0), 0.35F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.rawAmphibian, 1, 0), new ItemStack(ModItems.cookedAmphibian, 1, 0), 0.35F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModItems.rawAnt, 1, 0), new ItemStack(ModItems.cookedAnt), 0.25F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.sand, 1, 0), new ItemStack(ModBlocks.clearGlass), 0.1F);
+        
+        CraftingHelper.addSlabRecipe(ModBlocks.woodSingleSlab, ModBlocks.planks_1, new int[] {0, 1, 2, 3});
+        
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.multiBlock1, 1, 1), new ItemStack(ModBlocks.multiBlock1, 1, 0), 0.1F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.multiItems, 1, 2), new ItemStack(Items.iron_ingot, 1, 0), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.rawDragonfly, 1, 0), new ItemStack(ModItems.cookedDragonfly, 1, 0), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.rawAmphibian, 1, 0), new ItemStack(ModItems.cookedAmphibian, 1, 0), 0.35F);
+        GameRegistry.addSmelting(new ItemStack(ModItems.rawAnt, 1, 0), new ItemStack(ModItems.cookedAnt), 0.25F);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.sand, 1, 0), new ItemStack(ModBlocks.clearGlass), 0.1F);
         
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock1, 4, 2), new Object[] {"BB", "BB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 0)}); // Granite Brick
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock1, 4, 4), new Object[] {"BB", "BB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 3)}); // Limestone Brick
@@ -57,12 +59,10 @@ public class RecipeHandler
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock1, 1, 14), new Object[] {"PPP", "PPP", "PPP", 'P', new ItemStack(ModItems.multiItems, 1, 3)}); // Block of Pyrite
         CraftingHelper.addShapelessRecipe(new ItemStack(ModItems.multiItems, 9, 4), new Object[] {new ItemStack(ModBlocks.multiBlock2, 1, 9)}); // Block of Hematite to Hematite
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock2, 1, 9), new Object[] {"PPP", "PPP", "PPP", 'P', new ItemStack(ModItems.multiItems, 1, 4)}); // Block of Hematite
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsLepidodendron, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.planks_1, 1, 0)});
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsCalamites, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.planks_1, 1, 1)});
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsCordaites, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.planks_1, 1, 2)});
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsSigillaria, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.planks_1, 1, 3)});
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsGraniteBrick, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.multiBlock1, 1, 2)});
-        CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.stairsLimestoneBrick, 4), new Object[] {"#  ", "## ", "###", '#', new ItemStack(ModBlocks.multiBlock1, 1, 4)});
+        
+        CraftingHelper.addStairsRecipe(new Block[] {ModBlocks.stairsLepidodendron, ModBlocks.stairsCalamites, ModBlocks.stairsCordaites, ModBlocks.stairsSigillaria}, ModBlocks.planks_1);
+        CraftingHelper.addStairsRecipe(new Block[] {ModBlocks.stairsGraniteBrick, ModBlocks.stairsLimestoneBrick}, ModBlocks.multiBlock1);
+        
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock2, 4, 3), new Object[] {"BB", "BB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 2)}); // Granite Tiles
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock2, 4, 4), new Object[] {"BB", "BB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 4)}); // Limestone Tiles
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.multiBlock2, 4, 2), new Object[] {" B ", "B B", " B ", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 0)}); // Chiselled Granite
@@ -80,21 +80,15 @@ public class RecipeHandler
         CraftingHelper.addShapedRecipe(new ItemStack(ModItems.grindingStones, 1, 0), new Object[] {" B ", "BPB", " B ", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 0), 'P', new ItemStack(ModItems.multiItems, 1, 8)}); // Granite Grinding Ball
         CraftingHelper.addShapedRecipe(new ItemStack(ModItems.grindingStones, 1, 1), new Object[] {" B ", "BSB", " B ", 'B', new ItemStack(Items.iron_ingot), 'S', new ItemStack(ModItems.grindingStones, 1, 0)}); // Iron Grinding Ball
         
-        CraftingHelper.addShapedRecipe(new ItemStack(ModItems.amphibianSkinBoot, 1), new Object[] {"# #", "# #", '#', new ItemStack(ModItems.multiItems, 1, 10)});// Boots
-        CraftingHelper.addShapedRecipe(new ItemStack(ModItems.amphibianSkinLegging, 1), new Object[] {"###", "# #", "# #", '#', new ItemStack(ModItems.multiItems, 1, 10)});// Leggings
-        CraftingHelper.addShapedRecipe(new ItemStack(ModItems.amphibianSkinChest, 1), new Object[] {"# #", "###", "###", '#', new ItemStack(ModItems.multiItems, 1, 10)});// Chest
-        CraftingHelper.addShapedRecipe(new ItemStack(ModItems.amphibianSkinHelmet, 1), new Object[] {"###", "# #", '#', new ItemStack(ModItems.multiItems, 1, 10)});// Helmet
+        CraftingHelper.addArmorRecipe(ModItems.amphibianSkinHelmet, ModItems.amphibianSkinChest, ModItems.amphibianSkinLegging, ModItems.amphibianSkinBoot, ModItems.multiItems);
+        
         CraftingHelper.addShapedRecipe(new ItemStack(ModItems.flippers, 1), new Object[] {"I I", " B ", "A A", 'I', Items.iron_ingot, 'B', ModItems.amphibianSkinBoot, 'A', new ItemStack(ModItems.multiItems, 1, 10)}); // Flippers
         
         CraftingHelper.addShapedRecipe(new ItemStack(Blocks.furnace, 1), new Object[] {"GGG", "G G", "GGG", 'G', new ItemStack(ModBlocks.multiBlock1, 1, 1)}); // Furnace from Granite cobble
         CraftingHelper.addShapedRecipe(new ItemStack(Blocks.dispenser, 1), new Object[] {"###", "#X#", "#R#", '#', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'X', Items.bow, 'R', Items.redstone});
         CraftingHelper.addShapelessRecipe(new ItemStack(ModItems.multiItems, 2, 12), new Object[] {ModItems.rawDragonfly}); // Dragonfly wings
         
-        CraftingHelper.addShapedRecipe(new ItemStack(Items.stone_pickaxe), new Object[] {"CCC", " S ", " S ", 'C', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'S', Items.stick});
-        CraftingHelper.addShapedRecipe(new ItemStack(Items.stone_axe), new Object[] {"CC", "CS", " S", 'C', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'S', Items.stick});
-        CraftingHelper.addShapedRecipe(new ItemStack(Items.stone_shovel), new Object[] {"C", "S", "S", 'C', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'S', Items.stick});
-        CraftingHelper.addShapedRecipe(new ItemStack(Items.stone_hoe), new Object[] {"CC", " S", " S", 'C', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'S', Items.stick});
-        CraftingHelper.addShapedRecipe(new ItemStack(Items.stone_sword), new Object[] {"C", "C", "S", 'C', new ItemStack(ModBlocks.multiBlock1, 1, 1), 'S', Items.stick});
+        CraftingHelper.addToolsRecipe(Items.stone_sword, Items.stone_pickaxe, Items.stone_axe, Items.stone_shovel, Items.stone_hoe, ModBlocks.multiBlock1);
         
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.wallsRock, 6, 0), new Object[] {"BBB", "BBB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 0)}); // Walls - Granite
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.wallsRock, 6, 1), new Object[] {"BBB", "BBB", 'B', new ItemStack(ModBlocks.multiBlock1, 1, 1)}); // Walls - Granite Cobblestone
@@ -104,11 +98,11 @@ public class RecipeHandler
         CraftingHelper.addShapedRecipe(new ItemStack(ModBlocks.wallsRock, 6, 5), new Object[] {"BBB", "BBB", 'B', new ItemStack(ModBlocks.dirt, 1, 0)}); // Walls -
         
         int[] doors = new int[] {0, 14, 15, 16};
-        int var1 = 0;;
-        for(int item : doors)
+        int var1 = 0;
+        for(int metadata : doors)
         {
-            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] {"BBS", "BBS", "BBS", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick}); // Doors
-            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, item), new Object[] {"SBB", "SBB", "SBB", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick}); // Doors
+            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, metadata), new Object[] {"BBS", "BBS", "BBS", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick}); // Doors
+            CraftingHelper.addShapedRecipe(new ItemStack(ModItems.multiItems, 1, metadata), new Object[] {"SBB", "SBB", "SBB", 'B', new ItemStack(ModBlocks.planks_1, 1, var1), 'S', Items.stick}); // Doors
             ++var1;
         }
         
